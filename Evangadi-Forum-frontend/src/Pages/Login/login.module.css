@@ -1,0 +1,243 @@
+/* Wrapper and Background */
+.pageWrapper {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
+  position: relative;
+  background-image: url("../../assets/BG.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loginPageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
+
+/* Left and Right Sections */
+.loginLeft,
+.loginRight {
+  flex: 1;
+  padding: 20px;
+  position: relative;
+
+}
+.loginRight h2{
+  background: linear-gradient(to right, #fd5310, #000); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+/* For the Login Section */
+.loginLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 2px solid #e6e6e6; /* Vertical line */
+}
+
+.loginBox {
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  z-index: 2;
+}
+
+.loginHeading {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3b2063; /* Darker color for better visibility */
+  margin-bottom: 10px;
+}
+
+.loginBox p {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.loginBox a {
+  color: #ff7f2a;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.loginBox input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.loginFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #5861ae;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #3f489b;
+}
+.password_container {
+  position: relative;
+}
+
+.eye_icon {
+  position: absolute;
+  right: 5px; /* Adjusted for better alignment */
+  top: 50%; /* Centered vertically */
+  transform: translateY(-50%); /* Centered vertically */
+  padding-bottom: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  color: gray;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* About Section */
+.aboutSection {
+  max-width: 600px;
+  z-index: 2;
+  position: relative;
+  padding: 20px; /* Added padding for consistency */
+}
+
+.aboutTitle {
+  color: #ff7f2a;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.aboutHeading {
+  color: #3b2063;
+  font-size: 28px; /* Adjusted font size */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.aboutText {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.aboutButton {
+  background-color: #ff7f2a;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.aboutButton:hover {
+  background-color: #e66b1e;
+}
+
+/* Base styles remain unchanged */
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .loginPageContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .loginLeft {
+    border-right: none;
+    border-bottom: 2px solid #e6e6e6;
+    padding-bottom: 30px;
+  }
+
+  .loginRight {
+    padding-top: 30px;
+  }
+
+  .loginBox {
+    max-width: 90%;
+  }
+
+  .aboutSection {
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .aboutHeading {
+    font-size: 24px;
+  }
+
+  .aboutText {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pageWrapper {
+    padding: 20px;
+  }
+
+  .loginHeading {
+    font-size: 20px;
+  }
+
+  .loginBox {
+    padding: 30px 20px;
+  }
+
+  .loginBox input {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .loginButton {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .aboutHeading {
+    font-size: 20px;
+  }
+
+  .aboutText {
+    font-size: 14px;
+  }
+
+  .aboutButton {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+ 

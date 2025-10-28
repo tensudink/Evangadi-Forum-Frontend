@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./howItWorks.css";
 
 const HowItWorks = () => {
@@ -106,9 +107,12 @@ const HowItWorks = () => {
           <p className="mb-4 text-white">
             Join thousands of learners exchanging ideas every day.
           </p>
-          <a href="/register" className="btn btn-warning px-4 py-2 fw-semibold">
+          <Link
+            to="/register"
+            className="btn btn-warning px-4 py-2 fw-semibold"
+          >
             Join Now
-          </a>
+          </Link>
         </div>
       </section>
     </div>

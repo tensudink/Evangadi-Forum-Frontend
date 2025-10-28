@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, createContext } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from "./component/Dataprovider/DataProvider.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Login from "./Pages/Login/Login.jsx";
@@ -23,45 +23,44 @@ export const AppState = createContext();
 function App() {
   const [userData, setUserData] = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState();
   const [appLoading, setAppLoading] = useState(true);
 
-  const checkUser2 = async () => {
-    try {
-      const token = getToken(); // Use the helper
-      if (!token) {
-        navigate("/login");
-        return;
-      }
-
-      const { data } = await axios.get("api/user/checkUser");
-      // No need for headers - axiosConfig handles it automatically
-
-      setUserData({ user: data, token: token });
-      setUser(data);
-      console.log("User data:", data);
-    } catch (error) {
-      console.log("Auth check error:", error);
-      if (error.response?.status === 401) {
-        // Token is invalid, redirect to login
-        navigate("/login");
-      }
-    } finally {
-      setAppLoading(false);
-    }
-  };
-
   useEffect(() => {
-    const token = getToken(); // Use the helper
-    if (token) {
-      checkUser2();
-    } else {
-      navigate("/login");
-      setAppLoading(false);
-    }
-  }, []);
+    const checkUser2 = async () => {
+      try {
+        const token = getToken();
+        if (!token) {
+          if (
+            location.pathname !== "/login" &&
+            location.pathname !== "/register" &&
+            location.pathname !== "/how-it-works" &&
+            location.pathname !== "/forgot-password" 
+          ) {
+            navigate("/login", { state: { from: location.pathname } });
+          }
+          setAppLoading(false);
+          return;
+        }
 
-  // Show loading spinner while checking authentication
+        const { data } = await axios.get("api/user/checkUser");
+        setUserData({ user: data, token });
+        setUser(data);
+        console.log("User data:", data);
+      } catch (error) {
+        console.log("Auth check error:", error);
+        if (error.response?.status === 401) {
+          navigate("/login", { state: { from: location.pathname } });
+        }
+      } finally {
+        setAppLoading(false);
+      }
+    };
+
+    checkUser2();
+  }, [navigate, location]);
+
   if (appLoading) {
     return <LoadingSpinner fullScreen text="Loading application..." />;
   }
@@ -79,9 +78,7 @@ function App() {
         <Route path="/question/:id" element={<QuestionDetail />} />
         <Route path="/answer/:id" element={<Answer />} />
         <Route path="/allquestion" element={<QuestionList />} />
-        <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
